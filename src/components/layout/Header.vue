@@ -1,12 +1,14 @@
 <template lang="pug">
-  section.hero.is-success
+  section.hero.is-primary
     .hero-head
-      header.nav
-        .container
-          .nav-left
-            .nav-item
+      header.navbar
+        .container.navbar-menu
+          .navbar-strat
+            .navbar-item
               strong Platzi Music
-          .nav-rigth.nav-menu
+          .navbar-end
+            router-link.navbar-item(:to="{ name: 'search' }") Buscar
+            router-link.navbar-item(to="about") Nosotros
 
     .hero-body
       .container.has-text-centered

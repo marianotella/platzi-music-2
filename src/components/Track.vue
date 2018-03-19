@@ -15,12 +15,12 @@
           p.subtitle.is-6 {{ track.artists[0].name }}
 
       .content
-        small {{ track.duration_ms }}
+        small {{ track.duration_ms | ms-to-mm }}
         nav.level
           .level-left
-            a.level-item
+            button.level-item.button.is-primary
               span.icon.is-small(@click="selectTrack") ▶️
-            a.level-item
+            button.level-item.button.is-warning
               span.icon.is-small(@click="goToTrack(track.id)") 🔴
 </template>
 
@@ -31,10 +31,12 @@ export default {
   },
   methods: {
     selectTrack () {
+      if (!this.track.preview_url) { return }
       this.$emit('select', this.track.id)
       this.$bus.$emit('set-track', this.track)
     },
     goToTrack (id) {
+      if (!this.track.preview_url) { return }
       this.$router.push({ name: 'track', params: { id } })
     }
   }
@@ -44,5 +46,11 @@ export default {
 <style lang="css" scoped>
   .media-content {
     overflow: hidden;
+  }
+  .hidden{
+    display: none;
+  }
+  .content{
+    height: 110px;
   }
 </style>

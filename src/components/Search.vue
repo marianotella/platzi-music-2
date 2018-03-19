@@ -1,9 +1,8 @@
 <template lang="pug">
   main
-    pm-notification(v-show="showNotification", :danger="true")
-      p(slot="body") No se encotraron resultados
-    pm-notification(v-show="showSuccess", :danger="false")
-      p(slot="body") {{ searchMessage }}
+    pm-notification(v-show="showNotification", :type="{ 'success' :showTotal, 'error' : !showTotal }")
+      p(v-show="!showTotal", slot="body") No se encotraron resultados
+      p(v-show="showTotal", slot="body") {{ searchMessage }}
     section.section
       nav.navbar-menu
         .container
@@ -11,7 +10,7 @@
             .control.is-large.is-loading(v-show="isLoading")
               input.input.is-large(type="text", placeholder="Buscar canciones", v-model="searchQuery")
             .control.is-large(v-show="!isLoading")
-              input.input.is-large(type="text", placeholder="Buscar canciones", v-model="searchQuery")
+              input.input.is-large(type="text", placeholder="Buscar canciones", v-model="searchQuery", @keyup.enter="search")
             .control
               a.button.is-info.is-large(@click="search") Buscar
             .control
@@ -21,10 +20,13 @@
         .columns.is-multiline
           .column.is-one-quarter(v-for="t in tracks")
             pm-track(
+              v-blur="t.preview_url"
               :class="{ 'is-active': t.id == selectedTrack }",
               :track="t",
               @select='setSelectedTrack'
             )
+      .container.results(v-show="isLoading")
+        h2 No hay resultados para mostrar
 </template>
 
 <script>
@@ -42,7 +44,7 @@ export default {
       isLoading: false,
       selectedTrack: '',
       showNotification: false,
-      showSuccess: false
+      showTotal: false
     }
   },
   methods: {
@@ -53,7 +55,12 @@ export default {
       trackService.search(this.searchQuery)
         .then(res => {
           this.showNotification = res.tracks.total === 0
-          this.showSuccess = res.tracks.total !== 0
+          this.showTotal = res.tracks.total > 0
+
+          if (this.showNotification || this.showTotal) {
+            this.showNotification = true
+          }
+
           this.tracks = res.tracks.items
           this.isLoading = false
         })
@@ -79,7 +86,7 @@ export default {
       if (this.showSuccess) {
         setTimeout(() => {
           this.showSuccess = false
-        }, 3000)
+        }, 2400)
       }
     }
   },
@@ -92,6 +99,9 @@ export default {
 </script>
 
 <style lang="scss">
+main{
+  min-height: 400px;
+}
 .results{
   margin-top: 50px;
 }

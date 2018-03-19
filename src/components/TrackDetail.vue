@@ -17,7 +17,6 @@ export default {
       track: {}
     }
   },
-
   created () {
     const id = this.$route.params.id
 

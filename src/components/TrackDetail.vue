@@ -1,17 +1,36 @@
 <template lang="pug">
   .container
     .columns.is-mobile.is-centered
-      .column.is-4.is-centered
-        pm-track(:track="track")
+      .column.is-3.is-centered
+        figure.media-left
+          p.image
+            img(:src="track.album.images[0].url")
+          p
+            a.button.is-primary.is-large
+              span.icon(@click="selectTrack")
+      .column.is-8
+        .panel
+          .panel-heading
+            h1.title {{ track.name }}
+          .panel-block
+            article.media
+              .media-content
+                .content
+                  ul(v-for="(v, k) in track")
+                    li
+                      strong {{ k }}:&nbsp;
+                      span {{ v }}
+              nav.level
+                .level-left
+                  a.level-item
 </template>
 
 <script>
+import trackMixin from '@/mixins/track'
 import trackService from '@/services/track'
-import PmTrack from '@/components/Track.vue'
 
 export default {
-  components: { PmTrack },
-
+  mixins: [ trackMixin ],
   data () {
     return {
       track: {}

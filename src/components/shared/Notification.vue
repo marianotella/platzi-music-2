@@ -17,26 +17,11 @@ export default {
 <style lang="scss" scoped>
 .toast {
   color: #000;
-  line-height: 1.5;
-  margin-bottom: 1em;
-  padding: 1.25em;
-  position: absolute;
-  top: 1em;
-  right: -365px;
-  transition: 0.15s ease-in-out;
-}
-
-.toast.on {
-  transform: translateX(-365px);
-}
-
-.close {
-  cursor: pointer;
-  float: right;
-  font-size: 1.25rem;
-  line-height: 1;
-  margin-left: 1em;
-  opacity: .8;
+  font-size: .8em;
+  margin: auto;
+  text-align: center;
+  padding: 1em;
+  width: 200px;
 }
 
 .success {

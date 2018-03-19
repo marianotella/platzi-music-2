@@ -1,10 +1,8 @@
 <template lang="pug">
   main
-    pm-notification(v-show="showNotification", :type="{ 'success' :showTotal, 'error' : !showTotal }")
-      p(v-show="!showTotal", slot="body") No se encotraron resultados
-      p(v-show="showTotal", slot="body") {{ searchMessage }}
+
     section.section
-      nav.navbar-menu
+      nav.navbar
         .container
           .field.has-addons
             .control.is-large.is-loading(v-show="isLoading")
@@ -16,6 +14,13 @@
             .control
               a.button.is-danger.is-large &times;
 
+
+    transition(name="move")
+      pm-notification(v-show="showNotification", :type="{ 'success' :showTotal, 'error' : !showTotal }")
+        p(v-show="!showTotal", slot="body") No se encotraron resultados
+        p(v-show="showTotal", slot="body") {{ searchMessage }}
+
+    section.section
       .container.results(v-show="!isLoading")
         .columns.is-multiline
           .column.is-one-quarter(v-for="t in tracks")
@@ -86,7 +91,7 @@ export default {
       if (this.showSuccess) {
         setTimeout(() => {
           this.showSuccess = false
-        }, 2400)
+        }, 2000)
       }
     }
   },
@@ -107,5 +112,12 @@ main{
 }
 .is-active{
   border: 3px solid #23d160;
+}
+.field{
+  margin: auto;
+  width: 60%;
+}
+.section{
+    padding: 3rem 1rem 1rem 1rem;
 }
 </style>

@@ -1,1 +1,14 @@
 @import"~bulma/bulma.sass";
+
+.move-enter-active, .move-leave-active {
+  transform: translateX(0);
+  transition: all .3s linear;
+}
+
+.move-enter {
+  transform: translateX(100%);
+}
+
+.move-leave-to {
+  transform: translateX(-100%);
+}

@@ -3,9 +3,9 @@ import About from '@/components/About.vue'
 import TrackDetail from '@/components/TrackDetail.vue'
 
 const routes = [
-  { path: '/', component: Search, name: 'search' },
-  { path: '/about', component: About, name: 'about' },
-  { path: '/track/:id', component: TrackDetail, name: 'track' }
+  { path: '/vue/', component: Search, name: 'search' },
+  { path: '/vue/about', component: About, name: 'about' },
+  { path: '/vue/track/:id', component: TrackDetail, name: 'track' }
 ]
 
 export default routes

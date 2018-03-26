@@ -10,8 +10,3 @@ export default {
   components: { PmPlayer }
 }
 </script>
-<style media="screen">
-  .item{
-    position: fixed;
-  }
-</style>

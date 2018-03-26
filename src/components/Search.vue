@@ -17,7 +17,7 @@
         p(v-show="!showTotal", slot="body") No se encotraron resultados
         p(v-show="showTotal", slot="body") {{ searchMessage }}
 
-    .item.pm-content(v-show="!isLoading")
+    .pm-content(v-show="!isLoading")
       .item(v-for="t in tracks")
         pm-track(
           v-blur="t.preview_url"

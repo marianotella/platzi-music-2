@@ -1,5 +1,5 @@
 <template lang="pug">
-  .item.pm-header
+  .pm-header
     nav.navbar.is-info
       .navbar-brand
         .navbar-item

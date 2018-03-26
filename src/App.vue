@@ -1,8 +1,11 @@
 <template lang="pug">
   #app.pm-container
-    pm-header
-    router-view
-    pm-footer
+    .item
+      pm-header
+    .item
+      router-view
+    .item
+      pm-footer
 </template>
 
 <script>

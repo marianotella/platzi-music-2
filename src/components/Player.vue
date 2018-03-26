@@ -1,5 +1,5 @@
 <template lang="pug">
-  aplayer#player(autoplay, :music="setTrackObject")
+  aplayer#player(autoplay, :music="setTrackObject", :fixed="true")
 </template>
 
 <script>
@@ -14,3 +14,12 @@ export default {
   components: { Aplayer }
 }
 </script>
+<style>
+  .aplayer{
+    position: fixed !important;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+</style>

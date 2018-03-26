@@ -1,6 +1,5 @@
 <template lang="pug">
-  .item
-    pm-player
+  pm-player
 </template>
 <script>
 import PmPlayer from '@/components/Player'

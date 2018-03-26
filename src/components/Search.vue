@@ -1,37 +1,32 @@
 <template lang="pug">
-  main
-
-    section.section
-      nav.navbar
-        .container
-          .field.has-addons
-            .control.is-large.is-loading(v-show="isLoading")
-              input.input.is-large(type="text", placeholder="Buscar canciones", v-model="searchQuery")
-            .control.is-large(v-show="!isLoading")
-              input.input.is-large(type="text", placeholder="Buscar canciones", v-model="searchQuery", @keyup.enter="search")
-            .control
-              a.button.is-info.is-large(@click="search") Buscar
-            .control
-              a.button.is-danger.is-large &times;
-
+  section.section
+    nav.navbar
+      .container
+        .field.has-addons
+          .control.is-large.is-loading(v-show="isLoading")
+            input.input.is-large(type="text", placeholder="Buscar canciones", v-model="searchQuery")
+          .control.is-large(v-show="!isLoading")
+            input.input.is-large(type="text", placeholder="Buscar canciones", v-model="searchQuery", @keyup.enter="search")
+          .control
+            a.button.is-info.is-large(@click="search") Buscar
+          .control
+            a.button.is-danger.is-large &times;
 
     transition(name="move")
       pm-notification(v-show="showNotification", :type="{ 'success' :showTotal, 'error' : !showTotal }")
         p(v-show="!showTotal", slot="body") No se encotraron resultados
         p(v-show="showTotal", slot="body") {{ searchMessage }}
 
-    section.section
-      .container.results(v-show="!isLoading")
-        .columns.is-multiline
-          .column.is-one-quarter(v-for="t in tracks")
-            pm-track(
-              v-blur="t.preview_url"
-              :class="{ 'is-active': t.id == selectedTrack }",
-              :track="t",
-              @select='setSelectedTrack'
-            )
-      .container.results(v-show="isLoading")
-        h2 No hay resultados para mostrar
+    .item.pm-content(v-show="!isLoading")
+      .item(v-for="t in tracks")
+        pm-track(
+          v-blur="t.preview_url"
+          :class="{ 'is-active': t.id == selectedTrack }",
+          :track="t",
+          @select='setSelectedTrack'
+        )
+    .container.results(v-show="isLoading")
+      h2 No hay resultados para mostrar
 </template>
 
 <script>
@@ -103,21 +98,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
-main{
-  min-height: 400px;
-}
-.results{
-  margin-top: 50px;
-}
-.is-active{
-  border: 3px solid #23d160;
-}
-.field{
-  margin: auto;
-  width: 60%;
-}
-.section{
-    padding: 3rem 1rem 1rem 1rem;
-}
+<style scoped>
+  section {
+    overflow: auto;
+  }
 </style>

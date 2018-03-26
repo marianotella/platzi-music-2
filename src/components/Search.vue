@@ -102,4 +102,10 @@ export default {
   section {
     overflow: auto;
   }
+  .section{
+    padding-top: 1em;
+  }
+  .navbar{
+    margin-bottom: 50px;
+  }
 </style>

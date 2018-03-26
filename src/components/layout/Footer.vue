@@ -1,7 +1,17 @@
 <template lang="pug">
-  .item.pm-footer
-    footer
-      .container
-        .content.has-text-center
-          p Code with love
+  .item
+    pm-player
 </template>
+<script>
+import PmPlayer from '@/components/Player'
+
+export default {
+  name: 'app',
+  components: { PmPlayer }
+}
+</script>
+<style media="screen">
+  .item{
+    position: fixed;
+  }
+</style>

@@ -3,13 +3,11 @@
     figure.image.is-1by1
       img(:src="track.album.images[0].url")
       figcaption.track-detail
-        p {{ track.name }}
-        p {{ track.artists[0].name }}
-        small {{ track.duration_ms | ms-to-mm }}
-        button
-          span.icon.is-small(@click="selectTrack") ▶️
-        button
-          span.icon.is-small(@click="goToTrack(track.id)") 🔴
+        p {{ track.name | truncate }}
+        p {{ track.artists[0].name | truncate }}
+      .buttons(v-if="track.preview_url")
+        i.fa.fa-play-circle.fa-2x(@click="selectTrack")
+        i.fa.fa-info-circle.fa-2x(@click="goToTrack(track.id)")
 </template>
 
 <script>
@@ -24,6 +22,9 @@ export default {
       if (!this.track.preview_url) { return }
       this.$router.push({ name: 'track', params: { id } })
     }
+  },
+  filters: {
+
   }
 }
 </script>
@@ -32,25 +33,47 @@ export default {
   .track {
     position: relative;
   }
-  .level-left p:nth-of-type(1) {
-    font-weight: 700;
-  }
-  .level-left p:nth-of-type(2) {
-    font-weight: 300;
+  figure{
+    position: relative;
   }
   .track-detail {
-    background-color: rgba(0,0,0,.4);
+    background-color: rgba(0,0,0,.8);
     color: white;
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     height: 50px;
+    padding: 0px 5px 0 5px;
+  }
+  .track-detail p:nth-of-type(1){
+    font-weight: 700;
+  }
+  .track-detail p:nth-of-type(2){
+    font-weight: 400;
   }
   .hidden{
     display: none;
   }
   .content{
     height: 110px;
+  }
+  .buttons{
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 8px;
+    right: 0;
+    justify-content: center;
+  }
+  .buttons i{
+    color: white;
+    cursor: pointer;
+    margin: 0 5px;
+  }
+  .track:hover .buttons{
+    display: flex;
   }
 </style>

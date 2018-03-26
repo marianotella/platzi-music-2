@@ -11,6 +11,22 @@ const store = new Vuex.Store({
     trackTitle (state) {
       if (!state.track.name) { return '' }
       return `${state.track.name} - ${state.track.artists[0].name}`
+    },
+    setTrackObject (state) {
+      if (!state.track.name) {
+        return {
+          title: 'Titulo',
+          author: 'Autor',
+          url: '',
+          pic: 'https://pbs.twimg.com/profile_images/542713221325799424/NNgT2t45.jpeg'
+        }
+      }
+      return {
+        title: state.track.name,
+        author: state.track.artists[0].name,
+        url: state.track.preview_url,
+        pic: state.track.album.images[0].url
+      }
     }
   },
   mutations: {

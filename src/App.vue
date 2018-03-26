@@ -1,8 +1,6 @@
 <template lang="pug">
   #app.pm-container
     pm-header
-    .pm-player
-      pm-player
     router-view
     pm-footer
 </template>
@@ -10,11 +8,15 @@
 <script>
 import PmFooter from '@/components/layout/Footer.vue'
 import PmHeader from '@/components/layout/Header.vue'
-import PmPlayer from '@/components/Player'
 
 export default {
   name: 'app',
-  components: { PmFooter, PmHeader, PmPlayer }
+  components: { PmFooter, PmHeader },
+  created () {
+    let fontAwesome = document.createElement('script')
+    fontAwesome.setAttribute('src', 'https://use.fontawesome.com/cd79d6bf05.js')
+    document.head.appendChild(fontAwesome)
+  }
 }
 </script>
 

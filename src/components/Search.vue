@@ -1,16 +1,13 @@
 <template lang="pug">
   section.section
-    nav.navbar
-      .container
-        .field.has-addons
-          .control.is-large.is-loading(v-show="isLoading")
-            input.input.is-large(type="text", placeholder="Buscar canciones", v-model="searchQuery")
-          .control.is-large(v-show="!isLoading")
-            input.input.is-large(type="text", placeholder="Buscar canciones", v-model="searchQuery", @keyup.enter="search")
-          .control
-            a.button.is-info.is-large(@click="search") Buscar
-          .control
-            a.button.is-danger.is-large &times;
+    .container
+      .field.has-addons
+        .control.is-large.is-loading(v-show="isLoading")
+          input.input.is-large(type="text", placeholder="Buscar canciones", v-model="searchQuery")
+        .control.is-large(v-show="!isLoading")
+          input.input.is-large(type="text", placeholder="Buscar canciones", v-model="searchQuery", @keyup.enter="search")
+        .control
+          a.button.is-info.is-large(@click="search") Buscar
 
     transition(name="move")
       pm-notification(v-show="showNotification", :type="{ 'success' :showTotal, 'error' : !showTotal }")
@@ -26,7 +23,9 @@
           @select='setSelectedTrack'
         )
     .container.results(v-show="isLoading")
-      h2 No hay resultados para mostrar
+      p el pepo
+      .item
+        pm-track
 </template>
 
 <script>
@@ -107,5 +106,11 @@ export default {
   }
   .navbar{
     margin-bottom: 50px;
+  }
+  .pm-content{
+    margin-top: 50px;
+  }
+  .field{
+    justify-content: center;
   }
 </style>

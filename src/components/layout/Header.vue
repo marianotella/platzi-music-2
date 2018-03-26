@@ -3,7 +3,7 @@
     nav.navbar.is-info
       .navbar-brand
         .navbar-item
-          p Plazi Music
+          p Platzi Music
         .navbar-burger.burger
           span
           span
@@ -13,12 +13,12 @@
           .navbar-item
             .field.is-grouped
               p.control
-                router-link.bd-tw-button.button(:to="{ name: 'search' }")
+                router-link.button(:to="{ name: 'search' }")
                   span.icon
                     i.fa.fa-search
                   span Buscar
               p.control
-                router-link.button.is-primary(:to="{ name: 'nosotros' }")
+                router-link.button.is-primary(:to="{ name: 'about' }")
                   span.icon
                     i.fa.fa-users
                   span Nosotros

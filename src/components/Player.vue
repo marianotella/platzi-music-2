@@ -42,4 +42,24 @@ export default {
   .aplayer-time-inner{
     font-size: 1.5em;
   }
+  @media only screen and (max-width : 667px) {
+    .aplayer-pic{
+      height: 100px !important;
+      width: 100px !important;
+    }
+    .aplayer .aplayer-body .aplayer-info{
+      font-style: 16px;
+      height: 100px !important;
+      padding-bottom: 15px !important;
+    }
+    .aplayer-title{
+      font-size: 1.5em !important;
+    }
+    .aplayer-author{
+      font-size: 1em !important;
+    }
+    .aplayer-time-inner{
+      font-size: 1.5em;
+    }
+  }
 </style>

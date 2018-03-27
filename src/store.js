@@ -5,7 +5,8 @@ import trackService from '@/services/track'
 Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
-    track: {}
+    track: {},
+    showPlayer: false
   },
   getters: {
     trackTitle (state) {
@@ -32,6 +33,7 @@ const store = new Vuex.Store({
   mutations: {
     setTrack (state, track) {
       state.track = track
+      state.showPlayer = true
     },
     getAuthorName () {
       if (this.track.artists.length > 1) {

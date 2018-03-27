@@ -18,7 +18,7 @@ const store = new Vuex.Store({
           title: 'Titulo',
           author: 'Autor',
           url: '',
-          pic: 'https://pbs.twimg.com/profile_images/542713221325799424/NNgT2t45.jpeg'
+          pic: ''
         }
       }
       return {

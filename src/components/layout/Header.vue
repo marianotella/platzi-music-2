@@ -4,11 +4,11 @@
       .navbar-brand
         .navbar-item
           p Platzi Music
-        .navbar-burger.burger
+        .navbar-burger.burger(data-target="navbar")
           span
           span
           span
-      #navbarExampleTransparentExample.navbar-menu
+      #navbar.navbar-menu
         .navbar-end
           .navbar-item
             .field.is-grouped
@@ -23,3 +23,18 @@
                     i.fa.fa-users
                   span Nosotros
 </template>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+  var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0)
+  if ($navbarBurgers.length > 0) {
+    $navbarBurgers.forEach(function ($el) {
+      $el.addEventListener('click', function () {
+        var target = $el.dataset.target
+        var $target = document.getElementById(target)
+        $el.classList.toggle('is-active')
+        $target.classList.toggle('is-active')
+      })
+    })
+  }
+})
+</script>

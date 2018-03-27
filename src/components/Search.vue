@@ -6,12 +6,12 @@
           p(v-show="!showTotal", slot="body") No se encotraron resultados
           p(v-show="showTotal", slot="body") {{ searchMessage }}
     .container
-      .field.has-addons
-        .control.is-large.is-loading(v-show="isLoading")
-          input.input.is-large(type="text", placeholder="Buscar canciones", v-model="searchQuery")
-        .control.is-large(v-show="!isLoading")
+      .field.is-grouped
+        p.control.is-expanded.has-icons-left
           input.input.is-large(type="text", placeholder="Buscar canciones", v-model="searchQuery", @keyup.enter="search")
-        .control
+          span.icon.is-small.is-left
+            i.fa.fa-music
+        p.control
           a.button.is-info.is-large(@click="search") Buscar
 
     .pm-content(v-show="!isLoading")
@@ -23,9 +23,7 @@
           @select='setSelectedTrack'
         )
     .container.results(v-show="isLoading")
-      p el pepo
-      .item
-        pm-track
+      pm-loader
 </template>
 
 <script>
@@ -100,6 +98,7 @@ export default {
 <style scoped>
   section {
     overflow: auto;
+    margin-bottom: 150px;
   }
   .section{
     padding-top: 0em;
@@ -115,6 +114,13 @@ export default {
   }
   .notification-content{
     height: 60px;
-    margin-bottom: 10px;
+    width: 300px;
+    margin: 5px auto 10px;
+    text-align: center;
+  }
+  .container.results{
+    padding-top: 50px;
+    min-height: 300px;
+    text-align: center;
   }
 </style>

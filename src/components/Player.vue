@@ -21,10 +21,25 @@ export default {
     bottom: 0;
     left: 0;
     right: 0;
-    padding-bottom: 10px;
     border-radius: 0 !important;
-    background: #333;
+    box-shadow: 0 -3px 3px -3px #333 !important;
+  }
+  .aplayer-pic{
+    height: 150px !important;
+    width: 150px !important;
   }
   .aplayer .aplayer-body .aplayer-info{
+    font-style: 20px;
+    height: 150px !important;
+    padding-bottom: 30px !important;
+  }
+  .aplayer-title{
+    font-size: 1.5em !important;
+  }
+  .aplayer-author{
+    font-size: 1em !important;
+  }
+  .aplayer-time-inner{
+    font-size: 1.5em;
   }
 </style>

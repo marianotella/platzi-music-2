@@ -41,6 +41,9 @@ const store = new Vuex.Store({
       } else {
         return this.track.artists[0].name
       }
+    },
+    setShowPlayer (state) {
+      state.showPlayer = false
     }
   },
   actions: {

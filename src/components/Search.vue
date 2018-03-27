@@ -13,6 +13,8 @@
             i.fa.fa-music
         p.control
           a.button.is-info.is-large(@click="search") Buscar
+        p.control
+          a.button.is-danger.is-large(@click="clear") &times;
 
     .pm-content(v-show="!isLoading")
       .item(v-for="t in tracks")
@@ -31,6 +33,7 @@ import trackService from '@/services/track'
 import PmTrack from '@/components/Track.vue'
 import PmLoader from '@/components/shared/Loader.vue'
 import PmNotification from '@/components/shared/Notification.vue'
+import { mapState } from 'vuex'
 
 export default {
   name: 'app',
@@ -57,16 +60,21 @@ export default {
           if (this.showNotification || this.showTotal) {
             this.showNotification = true
           }
-
           this.tracks = res.tracks.items
           this.isLoading = false
         })
+    },
+    clear () {
+      this.searchQuery = ''
+      this.tracks = []
+      this.$store.commit('setShowPlayer')
     },
     setSelectedTrack (id) {
       this.selectedTrack = id
     }
   },
   computed: {
+    ...mapState(['setShowPlayer']),
     searchMessage () {
       return `Se encontraron: ${this.tracks.length} canciones`
     }
@@ -76,7 +84,7 @@ export default {
       if (this.showNotification) {
         setTimeout(() => {
           this.showNotification = false
-        }, 3000)
+        }, 2000)
       }
     },
     showSuccess () {

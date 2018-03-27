@@ -1,5 +1,10 @@
 <template lang="pug">
   section.section
+    .notification-content
+      transition(name="opacity")
+        pm-notification(v-show="showNotification", :type="{ 'is-success' :showTotal, 'is-danger' : !showTotal }")
+          p(v-show="!showTotal", slot="body") No se encotraron resultados
+          p(v-show="showTotal", slot="body") {{ searchMessage }}
     .container
       .field.has-addons
         .control.is-large.is-loading(v-show="isLoading")
@@ -8,11 +13,6 @@
           input.input.is-large(type="text", placeholder="Buscar canciones", v-model="searchQuery", @keyup.enter="search")
         .control
           a.button.is-info.is-large(@click="search") Buscar
-
-    transition(name="move")
-      pm-notification(v-show="showNotification", :type="{ 'success' :showTotal, 'error' : !showTotal }")
-        p(v-show="!showTotal", slot="body") No se encotraron resultados
-        p(v-show="showTotal", slot="body") {{ searchMessage }}
 
     .pm-content(v-show="!isLoading")
       .item(v-for="t in tracks")
@@ -102,7 +102,7 @@ export default {
     overflow: auto;
   }
   .section{
-    padding-top: 1em;
+    padding-top: 0em;
   }
   .navbar{
     margin-bottom: 50px;
@@ -112,5 +112,9 @@ export default {
   }
   .field{
     justify-content: center;
+  }
+  .notification-content{
+    height: 60px;
+    margin-bottom: 10px;
   }
 </style>

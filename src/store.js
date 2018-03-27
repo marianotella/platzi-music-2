@@ -10,7 +10,7 @@ const store = new Vuex.Store({
   getters: {
     trackTitle (state) {
       if (!state.track.name) { return '' }
-      return `${state.track.name} - ${state.track.artists[0].name}`
+      return `${state.track.name} - ${getAuthorName(state)}`
     },
     setTrackObject (state) {
       if (!state.track.name) {
@@ -23,7 +23,7 @@ const store = new Vuex.Store({
       }
       return {
         title: state.track.name,
-        author: state.track.artists[0].name,
+        author: getAuthorName(state),
         url: state.track.preview_url,
         pic: state.track.album.images[0].url
       }
@@ -32,6 +32,13 @@ const store = new Vuex.Store({
   mutations: {
     setTrack (state, track) {
       state.track = track
+    },
+    getAuthorName () {
+      if (this.track.artists.length > 1) {
+        return `${this.track.artists[0].name} y ${this.state.track.artists[1].name}`
+      } else {
+        return this.track.artists[0].name
+      }
     }
   },
   actions: {
@@ -45,4 +52,11 @@ const store = new Vuex.Store({
   }
 })
 
+function getAuthorName (state) {
+  if (state.track.artists.length > 1) {
+    return `${state.track.artists[0].name} y ${state.track.artists[1].name}`
+  } else {
+    return state.track.artists[0].name
+  }
+}
 export default store

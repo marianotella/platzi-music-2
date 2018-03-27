@@ -1,7 +1,6 @@
 <template lang="pug">
-  .container
-    .toast.on(:class="type")
-      slot(name="body") Algo anduvo mal
+  .notification(:class="type")
+    slot(name="body") Algo anduvo mal
 </template>
 
 <script>

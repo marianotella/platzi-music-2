@@ -1,16 +1,16 @@
 @import"~bulma/bulma.sass";
 
-.move-enter-active, .move-leave-active {
-  transform: translateX(0);
+.opacity-enter-active, .move-leave-active {
+  opacity: 10;
   transition: all .3s linear;
 }
 
-.move-enter {
-  transform: translateX(100%);
+.opacity-enter {
+  opacity: 8;
 }
 
-.move-leave-to {
-  transform: translateX(-100%);
+.opacity-leave-to {
+  opacity: 0;
 }
 .pm-container {
   display: grid;

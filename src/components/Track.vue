@@ -4,7 +4,7 @@
       img(:src="track.album.images[0].url")
       figcaption.track-detail
         p {{ track.name | truncate }}
-        p {{ track.artists[0].name | truncate }}
+        p {{ trackArtists(track) | truncate }}
       .buttons(v-if="track.preview_url")
         i.fa.fa-play-circle.fa-2x(@click="selectTrack")
         i.fa.fa-info-circle.fa-2x(@click="goToTrack(track.id)")
@@ -12,6 +12,7 @@
 
 <script>
 import trackMixin from '@/mixins/track'
+
 export default {
   mixins: [ trackMixin ],
   props: {
@@ -21,10 +22,16 @@ export default {
     goToTrack (id) {
       if (!this.track.preview_url) { return }
       this.$router.push({ name: 'track', params: { id } })
+    },
+    trackArtists (track) {
+      if (!track.name) {
+        return ''
+      } else if (track.artists.length > 1) {
+        return `${track.artists[0].name} y ${track.artists[1].name}`
+      } else {
+        return track.artists[0].name
+      }
     }
-  },
-  filters: {
-
   }
 }
 </script>
